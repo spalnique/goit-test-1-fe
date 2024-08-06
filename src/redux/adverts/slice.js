@@ -49,3 +49,4 @@ export const { selectAdverts, selectFavorites, selectIsLoading, selectError } =
   advertsSlice.selectors;
 export const { addFavorite, deleteFavorite } = advertsSlice.actions;
 export const advertsReducer = advertsSlice.reducer;
+console.log('test');
