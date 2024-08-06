@@ -3,15 +3,14 @@ import axios from 'axios';
 
 export const getAdverts = createAsyncThunk(
   'adverts/getAdverts',
-  async (query, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const response = await axios.get(
+      const { data } = await axios.get(
         'https://66b261191ca8ad33d4f78ae1.mockapi.io/adverts'
       );
-      console.log('response =', response);
-      return response;
+      return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

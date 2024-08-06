@@ -9,7 +9,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
 import { advertsPersistConfig } from './constants.js';
 import { advertsReducer } from './adverts/slice.js';
 

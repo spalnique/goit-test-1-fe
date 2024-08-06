@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { initialState } from '../constants.js';
 import { getAdverts } from './operations.js';
 
-const isFavorite = () =>
-  state.favorites.some((favorite) => favorite._id === action.payload._id);
+const isFavorite = (favorites) =>
+  favorites.some((favorite) => favorite._id === action.payload._id);
 
 const advertsSlice = createSlice({
   name: 'adverts',
@@ -17,12 +17,12 @@ const advertsSlice = createSlice({
   },
   reducers: {
     addFavorite: (state, action) => {
-      if (!isFavorite) {
+      if (!isFavorite(state.favorites)) {
         state.favorites.push(action.payload);
       }
     },
     deleteFavorite: (state, action) => {
-      if (isFavorite) {
+      if (isFavorite(state.favorites)) {
         state.favorites = state.favorites.filter(
           (favorite) => favorite._id === action.payload._id
         );
@@ -32,7 +32,7 @@ const advertsSlice = createSlice({
   extraReducers: (builder) =>
     builder
       .addCase(getAdverts.fulfilled, (state, action) => {
-        state.campers.push(action.payload);
+        state.campers = [...state.campers, ...action.payload];
         state.isLoading = false;
       })
       .addCase(getAdverts.pending, (state) => {
