@@ -1,13 +1,22 @@
+import { createTransform } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 export const initialState = {
-  adverts: { campers: [], favorites: [], isLoading: false, error: null },
+  adverts: {
+    campers: [],
+    nextCampers: [],
+    isLoading: false,
+    error: null,
+  },
+  favorites: { ids: [], campers: [], nextCampers: [] },
   filters: {},
   modal: { isOpen: false, data: null },
 };
 
-export const advertsPersistConfig = {
-  key: 'adverts',
+export const favoritesPersistConfig = {
+  key: 'favorites',
   storage,
-  whitelist: ['favorites'],
+  whitelist: ['ids'],
 };
+
+export const perPage = 4;

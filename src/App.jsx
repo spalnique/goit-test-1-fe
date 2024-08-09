@@ -1,17 +1,35 @@
-import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
-import { getAdverts } from './redux/adverts/operations.js';
-// import { getAdverts } from './redux/adverts/operations.js';
+import Layout from './components/Layout.jsx';
+import Header from './components/Header.jsx';
+import Modal from './components/Modal.jsx';
+
+// import useModal from './hooks/useModal.js';
+
+import Home from './pages/Home.jsx';
+import Catalog from './pages/Catalog.jsx';
+import Favorites from './pages/Favorites.jsx';
+import { useSelector } from 'react-redux';
+import { selectModal } from './redux/modal/slice.js';
 
 function App() {
-  const dispatch = useDispatch();
+  // const { modal, close } = useModal({ isOpen: false, data: null });
 
-  useEffect(() => {
-    dispatch(getAdverts());
-  }, [dispatch]);
+  // const modal = useSelector(selectModal);
 
-  return <></>;
+  return (
+    <Layout>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+      {/* <Modal isOpen={modal.isOpen} /> */}
+      <Modal />
+    </Layout>
+  );
 }
 
 export default App;
