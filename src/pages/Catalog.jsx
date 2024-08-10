@@ -10,14 +10,18 @@ import {
   selectNextCampers,
 } from '../redux/adverts/slice.js';
 import { perPage } from '../redux/constants.js';
+import Section from '../shared/Section.jsx';
+import Container from '../shared/Container.jsx';
+
+import css from '../styles/Catalog.module.css';
+import { getCurrentPage } from '../helpers/getCurrentPage.js';
 
 const Catalog = () => {
   const dispatch = useDispatch();
 
   const campers = useSelector(selectCampers);
   const nextCampers = useSelector(selectNextCampers);
-  const currentPage = campers.length ? Math.ceil(campers.length / perPage) : 1;
-
+  const currentPage = getCurrentPage(campers);
   const { page, nextPage } = usePages(currentPage);
 
   const handleLoadmore = () => {
@@ -33,14 +37,21 @@ const Catalog = () => {
   }, [page]);
 
   return (
-    <>
-      {campers.length > 0 && <CampersList campers={campers} />}
-      {nextCampers.length > 0 && (
-        <button type="button" onClick={handleLoadmore}>
-          loadmore
-        </button>
-      )}
-    </>
+    <Section>
+      <Container>
+        <div className={css.mainContent}>
+          {campers.length > 0 && <CampersList campers={campers} />}
+          {nextCampers.length > 0 && (
+            <button
+              type="button"
+              onClick={handleLoadmore}
+              className={css.loadmoreButton}>
+              Loadmore
+            </button>
+          )}
+        </div>
+      </Container>
+    </Section>
   );
 };
 

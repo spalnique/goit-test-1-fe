@@ -17,14 +17,19 @@ import {
 } from '../redux/favorites/operations.js';
 
 import { perPage } from '../redux/constants.js';
+import Section from '../shared/Section.jsx';
+import Container from '../shared/Container.jsx';
+
+import css from '../styles/Favorites.module.css';
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const { page, nextPage } = usePages(1);
 
   const favoritesIds = useSelector(selectFavoritesIds);
   const favorites = useSelector(selectFavorites);
   const nextFavorites = useSelector(selectNextFavorites);
+
+  const { page, nextPage } = usePages(1);
 
   const handleLoadmore = () => {
     dispatch(renderMoreFavorites());
@@ -44,14 +49,21 @@ const Favorites = () => {
   }, [page, favoritesIds]);
 
   return (
-    <>
-      {favorites.length > 0 && <CampersList campers={favorites} />}
-      {nextFavorites.length > 0 && (
-        <button type="button" onClick={handleLoadmore}>
-          loadmore
-        </button>
-      )}
-    </>
+    <Section>
+      <Container>
+        <div className={css.mainContent}>
+          {favorites.length > 0 && <CampersList campers={favorites} />}
+          {nextFavorites.length > 0 && (
+            <button
+              type="button"
+              onClick={handleLoadmore}
+              className={css.loadmoreButton}>
+              Loadmore
+            </button>
+          )}
+        </div>
+      </Container>
+    </Section>
   );
 };
 

@@ -1,0 +1,25 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(17, 18, 19, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modalContainer {
+  position: relative;
+  padding: 40px;
+  background-color: white;
+  border-radius: 20px;
+  width: 982px;
+  height: calc(100% - 2 * 40px);
+  overflow: scroll;
+  outline: none;
+}
+.noScroll {
+  overflow: hidden;
+}

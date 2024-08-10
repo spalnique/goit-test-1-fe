@@ -1,0 +1,77 @@
+.titleLocationPriceWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.price {
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+.locationRatingWrapper {
+  margin-top: 8px;
+  display: flex;
+  gap: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.locationRatingWrapper > p:first-of-type {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.imagesWrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.camperImage {
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.descriptionText {
+  margin-top: 24px;
+  color: #475467;
+}
+
+.selector {
+  display: flex;
+  gap: 20px;
+  height: 48px;
+  margin-top: 44px;
+  border-bottom: 1px solid rgba(16, 24, 40, 0.2);
+}
+
+.featuresReviewsWrapper {
+  width: 430px;
+  margin-top: 44px;
+}
+
+.selectorButton {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  height: 100%;
+  position: relative;
+}
+
+.activeButton::after {
+  content: '';
+  position: absolute;
+  bottom: -2.5px;
+  left: 0;
+  width: 100%;
+  border: 2px solid red;
+  border-radius: 2px;
+}

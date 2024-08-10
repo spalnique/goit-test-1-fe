@@ -9,7 +9,7 @@ export const initialState = {
   },
   favorites: { ids: [], campers: [], nextCampers: [] },
   filters: {},
-  modal: { isOpen: false, data: null },
+  modal: { isOpen: false, camper: null },
 };
 
 export const favoritesPersistConfig = {

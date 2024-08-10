@@ -7,12 +7,12 @@ const modalSlice = createSlice({
   selectors: { selectModal: (state) => state },
   reducers: {
     openModal: (state, { payload }) => {
-      state.data = payload;
+      state.camper = payload;
       state.isOpen = true;
     },
     closeModal: (state) => {
       state.isOpen = false;
-      state.data = null;
+      state.camper = null;
     },
   },
 });
