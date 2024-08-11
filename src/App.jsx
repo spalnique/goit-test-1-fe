@@ -20,7 +20,7 @@ function App() {
     <Layout>
       <Header />
       <Container>
-        <main className={css.mainWrapper}>
+        <div className={css.mainWrapper}>
           {isCatalog && <Sidebar />}
           <Routes>
             <Route path="/" element={<Home />} />
@@ -28,7 +28,7 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Home />} />
           </Routes>
-        </main>
+        </div>
       </Container>
       <Modal />
     </Layout>
