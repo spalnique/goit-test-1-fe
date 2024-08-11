@@ -1,0 +1,50 @@
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+}
+
+.formInputField {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 18px;
+  height: 56px;
+  background-color: #f7f7f7;
+}
+
+.error {
+  border: 0.5px solid #e44848;
+}
+
+.error::placeholder {
+  color: #e44848;
+}
+
+.formTextareaField {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 18px;
+  height: 56px;
+  background-color: #f7f7f7;
+  resize: none;
+  height: 100%;
+}
+
+.formSubmitButton {
+  padding: 16px 60px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+  background-color: #e44848;
+}
+
+.formSubmitButton:hover,
+.formSubmitButton:focus {
+  background-color: #d84343;
+}

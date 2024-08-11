@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import css from '../styles/CamperInfo.module.css';
+import clsx from 'clsx';
+
 import Features from './Features.jsx';
 import Reviews from './Reviews.jsx';
 
-import clsx from 'clsx';
+import css from '../styles/CamperInfo.module.css';
+import RequestForm from './RequestForm.jsx';
 
 const CamperInfo = ({ camper }) => {
   const [selector, setSelector] = useState('features');
@@ -53,9 +55,14 @@ const CamperInfo = ({ camper }) => {
             Reviews
           </span>
         </div>
-        <div className={css.featuresReviewsWrapper}>
-          {selector === 'features' && <Features camper={camper} />}
-          {selector === 'reviews' && <Reviews reviews={camper.reviews} />}
+        <div className={css.featuresReviewsFormWrapper}>
+          <div className={css.featuresReviewsWrapper}>
+            {selector === 'features' && <Features camper={camper} />}
+            {selector === 'reviews' && <Reviews reviews={camper.reviews} />}
+          </div>
+          <div className={css.formWrapper}>
+            <RequestForm id={camper.id} />
+          </div>
         </div>
       </div>
     </>
