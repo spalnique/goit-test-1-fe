@@ -4,11 +4,11 @@ export const initialState = {
   adverts: {
     campers: [],
     nextCampers: [],
+    query: {},
     isLoading: false,
     error: null,
   },
   favorites: { ids: [], campers: [], nextCampers: [] },
-  filters: {},
   modal: { isOpen: false, camper: null },
 };
 

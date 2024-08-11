@@ -47,7 +47,7 @@
   line-height: 1.5;
 }
 
-.locationRatingWrapper > p:first-of-type {
+.ratingWrapper > p:first-of-type {
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
@@ -74,6 +74,9 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .showMoreButton {
@@ -89,4 +92,13 @@
 .showMoreButton:hover,
 .showMoreButton:focus {
   background-color: #d84343;
+}
+
+.ratingWrapper {
+  display: flex;
+  gap: 4px;
+}
+.locationWrapper {
+  display: flex;
+  gap: 4px;
 }

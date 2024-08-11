@@ -7,6 +7,7 @@ const advertsSlice = createSlice({
   initialState: initialState.adverts,
 
   selectors: {
+    selectQuery: (state) => state.query,
     selectCampers: (state) => state.campers,
     selectNextCampers: (state) => state.nextCampers,
     selectIsLoading: (state) => state.isLoading,
@@ -15,6 +16,12 @@ const advertsSlice = createSlice({
   reducers: {
     renderMore: (state) => {
       state.campers = [...state.campers, ...state.nextCampers];
+    },
+    setQuery: (state, { payload }) => {
+      state.query = payload;
+    },
+    resetQuery: (state) => {
+      state.query = {};
     },
   },
   extraReducers: (builder) =>
@@ -28,6 +35,7 @@ const advertsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getAdverts.rejected, (state, { payload }) => {
+        state.campers = [];
         state.error = payload;
         state.isLoading = false;
       })
@@ -40,13 +48,20 @@ const advertsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(getNextAdverts.rejected, (state, { payload }) => {
+        state.nextCampers = [];
         state.error = payload;
         state.isLoading = false;
       }),
 });
 
 export const {
-  selectors: { selectCampers, selectNextCampers, selectIsLoading, selectError },
-  actions: { renderMore },
+  selectors: {
+    selectQuery,
+    selectCampers,
+    selectNextCampers,
+    selectIsLoading,
+    selectError,
+  },
+  actions: { renderMore, setQuery, resetQuery },
   reducer: advertsReducer,
 } = advertsSlice;

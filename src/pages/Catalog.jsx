@@ -8,6 +8,7 @@ import {
   renderMore,
   selectCampers,
   selectNextCampers,
+  selectQuery,
 } from '../redux/adverts/slice.js';
 import { perPage } from '../redux/constants.js';
 import Section from '../shared/Section.jsx';
@@ -18,7 +19,7 @@ import { getCurrentPage } from '../helpers/getCurrentPage.js';
 
 const Catalog = () => {
   const dispatch = useDispatch();
-
+  const query = useSelector(selectQuery);
   const campers = useSelector(selectCampers);
   const nextCampers = useSelector(selectNextCampers);
   const currentPage = getCurrentPage(campers);
@@ -31,10 +32,10 @@ const Catalog = () => {
 
   useEffect(() => {
     if (page === 1) {
-      dispatch(getAdverts(page));
+      dispatch(getAdverts({ page, query }));
     }
-    dispatch(getNextAdverts(page));
-  }, [page]);
+    dispatch(getNextAdverts({ page, query }));
+  }, [page, query]);
 
   return (
     <Section>

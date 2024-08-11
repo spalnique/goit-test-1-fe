@@ -48,30 +48,63 @@ const CampersListItem = ({ camper }) => {
             </div>
           </div>
           <div className={css.locationRatingWrapper}>
-            <p>{`${camper.rating}(${camper.reviews.length} Reviews)`}</p>
-            <p>{camper.location.split(', ').reverse().join(', ')}</p>
+            <div className={css.ratingWrapper}>
+              <svg width={16} height={16} fill="#ffc531">
+                <use xlinkHref={`${icons}#star`} />
+              </svg>
+              <p>{`${camper.rating}(${camper.reviews.length} Reviews)`}</p>
+            </div>
+            <div className={css.locationWrapper}>
+              <svg width={16} height={16}>
+                <use xlinkHref={`${icons}#location`} />
+              </svg>
+              <p>{camper.location.split(', ').reverse().join(', ')}</p>
+            </div>
           </div>
         </div>
         <div>
           <p className={css.descriptionText}>{camper.description}</p>
         </div>
         <div className={css.specificationsList}>
-          <span
-            className={
-              css.specificationsListItem
-            }>{`${camper.adults} adults`}</span>
           <span className={css.specificationsListItem}>
-            {camper.transmission}
+            <svg width={20} height={20}>
+              <use xlinkHref={`${icons}#adults`} />
+            </svg>
+            <p>{`${camper.adults} adults`}</p>
           </span>
-          <span className={css.specificationsListItem}>{camper.engine}</span>
+          <span className={css.specificationsListItem}>
+            <svg width={20} height={20}>
+              <use xlinkHref={`${icons}#transmission`} />
+            </svg>
+            <p>{camper.transmission}</p>
+          </span>
+          <span className={css.specificationsListItem}>
+            <svg width={20} height={20}>
+              <use xlinkHref={`${icons}#engine`} />
+            </svg>
+            <p>{camper.engine}</p>
+          </span>
           {camper.details.kitchen === 1 && (
-            <span className={css.specificationsListItem}>kitchen</span>
+            <span className={css.specificationsListItem}>
+              <svg width={20} height={20}>
+                <use xlinkHref={`${icons}#kitchen`} />
+              </svg>
+              <p>kitchen</p>
+            </span>
           )}
           <span className={css.specificationsListItem}>
-            {`${camper.details.beds} beds`}
+            <svg width={20} height={20}>
+              <use xlinkHref={`${icons}#beds`} />
+            </svg>
+            <p>{`${camper.details.beds} beds`}</p>
           </span>
           {camper.details.airConditioner === 1 && (
-            <span className={css.specificationsListItem}>AC</span>
+            <span className={css.specificationsListItem}>
+              <svg width={20} height={20}>
+                <use xlinkHref={`${icons}#airConditioner`} />
+              </svg>
+              <p>AC</p>
+            </span>
           )}
         </div>
         <button

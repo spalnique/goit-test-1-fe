@@ -1,4 +1,5 @@
 import css from '../styles/Features.module.css';
+import icons from '../assets/icons/icons.svg';
 
 const Features = ({ camper }) => {
   const detailsToRender = Object.keys(camper.details).filter(
@@ -8,20 +9,30 @@ const Features = ({ camper }) => {
   return (
     <div className={css.featuresWrapper}>
       <div className={css.specificationsList}>
-        <span
-          className={
-            css.specificationsListItem
-          }>{`${camper.adults} adults`}</span>
         <span className={css.specificationsListItem}>
-          {camper.transmission}
+          <svg width={20} height={20}>
+            <use xlinkHref={`${icons}#adults`} />
+          </svg>
+          <p>{`${camper.adults} adults`}</p>
+        </span>
+        <span className={css.specificationsListItem}>
+          <svg width={20} height={20}>
+            <use xlinkHref={`${icons}#transmission`} />
+          </svg>
+          <p>{camper.transmission}</p>
         </span>
         {detailsToRender.map((detail) => (
           <span key={detail} className={css.specificationsListItem}>
-            {camper.details[detail] > 1
-              ? `${camper.details[detail]} ${
-                  detail.endsWith('s') ? detail : `${detail}s`
-                }`
-              : `${detail === 'airConditioner' ? 'AC' : detail}`}
+            <svg width={20} height={20}>
+              <use xlinkHref={`${icons}#${detail}`} />
+            </svg>
+            <p>
+              {camper.details[detail] > 1
+                ? `${camper.details[detail]} ${
+                    detail.endsWith('s') ? detail : `${detail}s`
+                  }`
+                : `${detail === 'airConditioner' ? 'AC' : detail}`}
+            </p>
           </span>
         ))}
       </div>

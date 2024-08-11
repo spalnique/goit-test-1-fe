@@ -1,14 +1,17 @@
-import background from '../assets/images/camping-car.jpeg';
-import Container from '../shared/Container.jsx';
 import Section from '../shared/Section.jsx';
+import image from '../assets/images/camping-car.jpeg';
 
 const Home = () => {
   return (
     <Section>
-      <Container>
-        <h1>Home</h1>
-        <img src={background} alt="background" />
-      </Container>
+      <div
+        style={{
+          backgroundImage: `url(${image})`,
+          width: '100%',
+          height: '600px',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}></div>
     </Section>
   );
 };

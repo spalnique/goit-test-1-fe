@@ -9,10 +9,10 @@ const instance = axios.create({
 
 export const getAdverts = createAsyncThunk(
   'adverts/getAdverts',
-  async (page, thunkAPI) => {
+  async ({ page, query }, thunkAPI) => {
     try {
       const { data } = await instance.get('/adverts', {
-        params: { page },
+        params: { page, ...query },
       });
       return data;
     } catch (error) {
@@ -23,10 +23,10 @@ export const getAdverts = createAsyncThunk(
 
 export const getNextAdverts = createAsyncThunk(
   'adverts/getNextAdverts',
-  async (page, thunkAPI) => {
+  async ({ page, query }, thunkAPI) => {
     try {
       const { data } = await instance.get('/adverts', {
-        params: { page: page + 1 },
+        params: { page: page + 1, ...query },
       });
       return data;
     } catch (error) {
