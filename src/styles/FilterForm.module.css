@@ -1,0 +1,118 @@
+.locationWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 32px;
+  position: relative;
+}
+
+.locationInputField {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 18px 18px 18px 44px;
+  height: 56px;
+  background-color: #f7f7f7;
+}
+
+.locationLabel {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(16, 24, 40, 0.6);
+}
+
+.tipText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #475467;
+}
+
+.filterTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  padding: 24px 0 24px;
+
+  border-bottom: 1px solid rgba(16, 24, 40, 0.1);
+}
+
+.checkboxWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  padding-top: 24px;
+}
+
+.checkboxLabel {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  padding: 17px 40px;
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkboxSelected {
+  border: 1px solid #e44848;
+}
+
+.checkboxDisabled {
+  border: 1px solid rgba(124, 124, 124, 0.376);
+  color: rgba(124, 124, 124, 0.375);
+}
+
+.radiobuttonWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  padding-top: 24px;
+}
+
+.radiobuttonLabel {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  padding: 17px 40px;
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.radiobuttonSelected {
+  border: 1px solid #e44848;
+}
+
+.formSubmitButton {
+  border-radius: 200px;
+  padding: 16px 60px;
+  width: 173px;
+  height: 56px;
+  background-color: #e44848;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.formSubmitButton:focus,
+.formSubmitButton:hover {
+  background-color: #d84343;
+}
+
+.buttonsWrapper {
+  margin-top: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

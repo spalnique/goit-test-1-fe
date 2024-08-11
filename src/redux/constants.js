@@ -1,11 +1,21 @@
+import storage from 'redux-persist/lib/storage';
+
 export const initialState = {
-  adverts: { campers: [], favorites: [], isLoading: false, error: null },
-  filters: {},
-  modal: { isOpen: false, data: null },
+  adverts: {
+    campers: [],
+    nextCampers: [],
+    query: {},
+    isLoading: false,
+    error: null,
+  },
+  favorites: { ids: [], campers: [], nextCampers: [] },
+  modal: { isOpen: false, camper: null },
 };
 
-export const advertsPersistConfig = {
-  key: 'adverts',
+export const favoritesPersistConfig = {
+  key: 'favorites',
   storage,
-  whitelist: ['favorites'],
+  whitelist: ['ids'],
 };
+
+export const perPage = 4;

@@ -9,16 +9,19 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
-import { advertsPersistConfig } from './constants.js';
+import { favoritesPersistConfig } from './constants.js';
 import { advertsReducer } from './adverts/slice.js';
+import { modalReducer } from './modal/slice.js';
+import { favoritesReducer } from './favorites/slice.js';
 
 export const store = configureStore({
   reducer: {
-    adverts: persistReducer(advertsPersistConfig, advertsReducer),
+    adverts: advertsReducer,
+    favorites: persistReducer(favoritesPersistConfig, favoritesReducer),
+    modal: modalReducer,
   },
-  middleware: (getDefaultMiddleWare) =>
-    getDefaultMiddleWare({
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
