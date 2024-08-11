@@ -21,7 +21,7 @@ const Features = ({ camper }) => {
               ? `${camper.details[detail]} ${
                   detail.endsWith('s') ? detail : `${detail}s`
                 }`
-              : `${detail}`}
+              : `${detail === 'airConditioner' ? 'AC' : detail}`}
           </span>
         ))}
       </div>

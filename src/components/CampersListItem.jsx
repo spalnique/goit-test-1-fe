@@ -1,11 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../redux/modal/slice.js';
-import { toggleFavorite } from '../redux/favorites/slice.js';
+import {
+  selectFavoritesIds,
+  toggleFavorite,
+} from '../redux/favorites/slice.js';
 
+import icons from '../assets/icons/icons.svg';
 import css from '../styles/CampersListItem.module.css';
 
 const CampersListItem = ({ camper }) => {
   const dispatch = useDispatch();
+  const favoritesIds = useSelector(selectFavoritesIds);
 
   const handleFavorites = () => {
     dispatch(toggleFavorite(camper));
@@ -30,9 +35,16 @@ const CampersListItem = ({ camper }) => {
             <p>{camper.name}</p>
             <div className={css.priceWrapper}>
               <p>{`€${camper.price}.00`}</p>
-              <button type="button" onClick={handleFavorites}>
-                like
-              </button>
+              <svg
+                width={25}
+                height={22}
+                fill={favoritesIds.includes(camper.id) ? '#e44848' : '#ffffff'}
+                stroke={
+                  favoritesIds.includes(camper.id) ? '#e44848' : '#101828'
+                }
+                onClick={handleFavorites}>
+                <use xlinkHref={`${icons}#heart`} />
+              </svg>
             </div>
           </div>
           <div className={css.locationRatingWrapper}>

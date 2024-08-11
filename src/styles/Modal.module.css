@@ -12,12 +12,11 @@
 }
 .modalContainer {
   position: relative;
-  padding: 40px;
+  padding: 40px 20px;
   background-color: white;
   border-radius: 20px;
   width: 982px;
-  height: calc(100% - 2 * 40px);
-  overflow: scroll;
+  height: calc(100vh - 2 * 40px);
   outline: none;
 }
 .noScroll {

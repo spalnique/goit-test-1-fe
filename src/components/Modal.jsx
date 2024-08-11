@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { closeModal, selectModal } from '../redux/modal/slice.js';
 
-import css from '../styles/Modal.module.css';
 import CamperInfo from './CamperInfo.jsx';
+
+import css from '../styles/Modal.module.css';
+import icons from '../assets/icons/icons.svg';
 
 const Modal = () => {
   ReactModal.setAppElement('#root');
@@ -30,22 +32,17 @@ const Modal = () => {
       {camper && (
         <>
           <CamperInfo camper={camper} />
-          <button
-            type="button"
+          <svg
+            width={32}
+            height={32}
             style={{
               position: 'absolute',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
               top: 40,
               right: 40,
-              width: 40,
-              height: 40,
-              color: '#101828',
             }}
             onClick={handleClose}>
-            x
-          </button>
+            <use xlinkHref={`${icons}#close`} />
+          </svg>
         </>
       )}
     </ReactModal>

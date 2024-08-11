@@ -1,6 +1,14 @@
+.camperInfoWrapper {
+  height: calc(100vh - 2 * 40px - 204px);
+  overflow-y: auto;
+  padding: 0 20px;
+}
+
 .titleLocationPriceWrapper {
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  padding-bottom: 24px;
 }
 
 .title {
@@ -31,6 +39,7 @@
 }
 
 .imagesWrapper {
+  padding-top: 12px;
   display: flex;
   gap: 16px;
 }

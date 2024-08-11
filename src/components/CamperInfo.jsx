@@ -23,38 +23,40 @@ const CamperInfo = ({ camper }) => {
         </div>
         <p className={css.price}>{`€${camper.price}.00`}</p>
       </div>
-      <div className={css.imagesWrapper}>
-        {camper.gallery.map((image) => (
-          <img
-            key={image}
-            src={image}
-            alt="Camper's photo"
-            className={css.camperImage}
-            width={290}
-            height={310}
-          />
-        ))}
-      </div>
-      <p className={css.descriptionText}>{camper.description}</p>
-      <div className={css.selector}>
-        <span
-          className={clsx(css.selectorButton, {
-            [css.activeButton]: selector === 'features',
-          })}
-          onClick={handleSelector}>
-          Features
-        </span>
-        <span
-          className={clsx(css.selectorButton, {
-            [css.activeButton]: selector === 'reviews',
-          })}
-          onClick={handleSelector}>
-          Reviews
-        </span>
-      </div>
-      <div className={css.featuresReviewsWrapper}>
-        {selector === 'features' && <Features camper={camper} />}
-        {selector === 'reviews' && <Reviews reviews={camper.reviews} />}
+      <div className={css.camperInfoWrapper}>
+        <div className={css.imagesWrapper}>
+          {camper.gallery.map((image) => (
+            <img
+              key={image}
+              src={image}
+              alt="Camper's photo"
+              className={css.camperImage}
+              width={290}
+              height={310}
+            />
+          ))}
+        </div>
+        <p className={css.descriptionText}>{camper.description}</p>
+        <div className={css.selector}>
+          <span
+            className={clsx(css.selectorButton, {
+              [css.activeButton]: selector === 'features',
+            })}
+            onClick={handleSelector}>
+            Features
+          </span>
+          <span
+            className={clsx(css.selectorButton, {
+              [css.activeButton]: selector === 'reviews',
+            })}
+            onClick={handleSelector}>
+            Reviews
+          </span>
+        </div>
+        <div className={css.featuresReviewsWrapper}>
+          {selector === 'features' && <Features camper={camper} />}
+          {selector === 'reviews' && <Reviews reviews={camper.reviews} />}
+        </div>
       </div>
     </>
   );
