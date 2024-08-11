@@ -9,8 +9,9 @@ import Catalog from './pages/Catalog.jsx';
 import Favorites from './pages/Favorites.jsx';
 import Sidebar from './shared/Sidebar.jsx';
 
-import css from './styles/App.module.css';
 import Container from './shared/Container.jsx';
+
+import css from './styles/App.module.css';
 
 function App() {
   const { pathname } = useLocation();
@@ -20,15 +21,15 @@ function App() {
     <Layout>
       <Header />
       <Container>
-        <div className={css.mainWrapper}>
-          {isCatalog && <Sidebar />}
+        <main className={css.mainWrapper}>
+          {/* {isCatalog && <Sidebar />} */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/favorites" element={<Favorites />} />
             <Route path="*" element={<Home />} />
           </Routes>
-        </div>
+        </main>
       </Container>
       <Modal />
     </Layout>

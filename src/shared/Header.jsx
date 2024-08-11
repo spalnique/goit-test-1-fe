@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import css from '../styles/Header.module.css';
 import { NavLink } from 'react-router-dom';
 import Container from './Container.jsx';
+
+import css from '../styles/Header.module.css';
 
 const Header = () => {
   const setClassName = ({ isActive }) =>

@@ -11,6 +11,7 @@ const Home = () => {
           height: '600px',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          margin: '0 auto',
         }}></div>
     </Section>
   );

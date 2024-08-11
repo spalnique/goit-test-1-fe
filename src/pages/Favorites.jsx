@@ -50,19 +50,17 @@ const Favorites = () => {
 
   return (
     <Section>
-      <Container>
-        <div className={css.mainContent}>
-          {favorites.length > 0 && <CampersList campers={favorites} />}
-          {nextFavorites.length > 0 && (
-            <button
-              type="button"
-              onClick={handleLoadmore}
-              className={css.loadmoreButton}>
-              Loadmore
-            </button>
-          )}
-        </div>
-      </Container>
+      <div className={css.mainContent}>
+        {favorites.length > 0 && <CampersList campers={favorites} />}
+        {nextFavorites.length > 0 && (
+          <button
+            type="button"
+            onClick={handleLoadmore}
+            className={css.loadmoreButton}>
+            Loadmore
+          </button>
+        )}
+      </div>
     </Section>
   );
 };
