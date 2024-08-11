@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import Layout from './shared/Layout.jsx';
 import Header from './shared/Header.jsx';
@@ -27,7 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/favorites" element={<Favorites />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<Navigate to={'/'} replace />} />
           </Routes>
         </main>
       </Container>
