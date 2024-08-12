@@ -36,6 +36,7 @@ const CampersListItem = ({ camper }) => {
             <div className={css.priceWrapper}>
               <p>{`€${camper.price}.00`}</p>
               <svg
+                style={{ cursor: 'pointer' }}
                 width={25}
                 height={22}
                 fill={favoritesIds.includes(camper.id) ? '#e44848' : '#ffffff'}
