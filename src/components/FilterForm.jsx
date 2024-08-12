@@ -12,14 +12,7 @@ const FilterForm = () => {
 
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: {},
-    watch,
-    setFocus,
-    reset,
-  } = useForm({
+  const { register, handleSubmit, watch, setFocus, reset } = useForm({
     defaultValues: {
       location: '',
       form: '',
@@ -60,7 +53,6 @@ const FilterForm = () => {
         </label>
         <input
           className={css.locationInputField}
-          type="text"
           id="location"
           placeholder="Kyiv, Ukraine"
           {...register('location')}
