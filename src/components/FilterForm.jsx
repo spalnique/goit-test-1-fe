@@ -9,7 +9,6 @@ import icons from '../assets/icons/icons.svg';
 
 const FilterForm = () => {
   const disabled = true; // Due to backend limitations some filters has been disabled. Set disabled to true in order to start using them.
-
   const dispatch = useDispatch();
 
   const {
