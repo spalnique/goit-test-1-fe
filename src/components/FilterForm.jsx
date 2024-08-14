@@ -36,13 +36,11 @@ const FilterForm = () => {
       }
     }
     dispatch(setQuery(query));
-    blur();
   };
 
   const handleReset = () => {
     dispatch(resetQuery());
     reset();
-    blur();
   };
 
   return (

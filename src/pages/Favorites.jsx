@@ -18,7 +18,6 @@ import {
 
 import { perPage } from '../redux/constants.js';
 import Section from '../shared/Section.jsx';
-import Container from '../shared/Container.jsx';
 
 import css from '../styles/Favorites.module.css';
 
@@ -46,7 +45,7 @@ const Favorites = () => {
     const lastIndex = perPage * (page + 1);
     const idsToFetch = favoritesIds.slice(firstIndex, lastIndex);
     dispatch(getNextFavorites(idsToFetch));
-  }, [page, favoritesIds]);
+  }, [dispatch, page, favoritesIds]);
 
   return (
     <Section>

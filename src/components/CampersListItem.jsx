@@ -12,6 +12,8 @@ const CampersListItem = ({ camper }) => {
   const dispatch = useDispatch();
   const favoritesIds = useSelector(selectFavoritesIds);
 
+  const parsePrice = (price) => `${parseFloat(price).toFixed(2)}`;
+
   const handleFavorites = () => {
     dispatch(toggleFavorite(camper));
   };
@@ -34,7 +36,7 @@ const CampersListItem = ({ camper }) => {
           <div className={css.titlePriceWrapper}>
             <p>{camper.name}</p>
             <div className={css.priceWrapper}>
-              <p>{`€${camper.price}.00`}</p>
+              <p>{parsePrice(camper.price)}</p>
               <svg
                 style={{ cursor: 'pointer' }}
                 width={25}

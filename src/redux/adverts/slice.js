@@ -10,47 +10,53 @@ const advertsSlice = createSlice({
     selectQuery: (state) => state.query,
     selectCampers: (state) => state.campers,
     selectNextCampers: (state) => state.nextCampers,
-    selectIsLoading: (state) => state.isLoading,
-    selectError: (state) => state.error,
+    selectFetchNext: (state) => state.fetchNext,
+    selectPage: (state) => state.page,
   },
   reducers: {
     renderMore: (state) => {
       state.campers = [...state.campers, ...state.nextCampers];
+      state.nextCampers = [];
+      state.page += 1;
+      state.fetchNext = true;
     },
     setQuery: (state, { payload }) => {
+      if (!Object.keys(payload).length) {
+        return;
+      }
+      state.campers = [];
+      state.nextCampers = [];
+      state.page = 1;
+      state.fetchNext = true;
       state.query = payload;
     },
     resetQuery: (state) => {
+      if (!Object.keys(state.query).length) {
+        return;
+      }
+      state.page = 1;
       state.query = {};
+      state.campers = [];
+      state.nextCampers = [];
     },
   },
   extraReducers: (builder) =>
     builder
       .addCase(getAdverts.fulfilled, (state, { payload }) => {
-        state.campers = [...payload];
-        state.isLoading = false;
+        state.campers = payload;
       })
-      .addCase(getAdverts.pending, (state) => {
-        state.error = null;
-        state.isLoading = true;
-      })
-      .addCase(getAdverts.rejected, (state, { payload }) => {
+      // .addCase(getAdverts.pending, (state) => {})
+      .addCase(getAdverts.rejected, (state) => {
         state.campers = [];
-        state.error = payload;
-        state.isLoading = false;
       })
       .addCase(getNextAdverts.fulfilled, (state, { payload }) => {
         state.nextCampers = [...payload];
-        state.isLoading = false;
+        state.fetchNext = false;
       })
-      .addCase(getNextAdverts.pending, (state) => {
-        state.error = null;
-        state.isLoading = true;
-      })
-      .addCase(getNextAdverts.rejected, (state, { payload }) => {
+      // .addCase(getNextAdverts.pending, (state) => {})
+      .addCase(getNextAdverts.rejected, (state) => {
         state.nextCampers = [];
-        state.error = payload;
-        state.isLoading = false;
+        state.fetchNext = false;
       }),
 });
 
@@ -59,8 +65,8 @@ export const {
     selectQuery,
     selectCampers,
     selectNextCampers,
-    selectIsLoading,
-    selectError,
+    selectFetchNext,
+    selectPage,
   },
   actions: { renderMore, setQuery, resetQuery },
   reducer: advertsReducer,
