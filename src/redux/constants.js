@@ -8,7 +8,7 @@ export const initialState = {
     query: {},
     page: 1,
   },
-  favorites: { ids: [], campers: [], nextCampers: [], page: 1 },
+  favorites: { ids: [], campers: [], nextCampers: [] },
   modal: { isOpen: false, camper: null },
 };
 
