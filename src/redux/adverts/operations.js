@@ -1,11 +1,20 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { perPage } from '../constants.js';
 
 const instance = axios.create({
   baseURL: 'https://66b261191ca8ad33d4f78ae1.mockapi.io',
   params: { limit: perPage },
 });
+
+instance.interceptors.response.use(
+  (response) => response,
+  (error) =>
+    error.response && error.response.status === 404
+      ? Promise.resolve({ data: [] })
+      : Promise.reject(error)
+);
 
 export const getAdverts = createAsyncThunk(
   'adverts/getAdverts',
@@ -34,22 +43,3 @@ export const getNextAdverts = createAsyncThunk(
     }
   }
 );
-
-export const getFavorites = async (ids) => {
-  if (!ids || !ids.length) {
-    return [];
-  }
-
-  try {
-    const requests = ids
-      .filter((_, i) => i <= 3)
-      .map((id) => instance.get(`/adverts/${id}`));
-
-    const responses = await Promise.all(requests);
-    const data = responses.map(({ data }) => data);
-    return data;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-};

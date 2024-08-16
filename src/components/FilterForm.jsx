@@ -11,14 +11,7 @@ const FilterForm = () => {
   const disabled = true; // Due to backend limitations some filters has been disabled. Set disabled to true in order to start using them.
   const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: {},
-    watch,
-    setFocus,
-    reset,
-  } = useForm({
+  const { register, handleSubmit, watch, setFocus, reset } = useForm({
     defaultValues: {
       location: '',
       form: '',
@@ -42,13 +35,11 @@ const FilterForm = () => {
       }
     }
     dispatch(setQuery(query));
-    blur();
   };
 
   const handleReset = () => {
     dispatch(resetQuery());
     reset();
-    blur();
   };
 
   return (
@@ -59,7 +50,6 @@ const FilterForm = () => {
         </label>
         <input
           className={css.locationInputField}
-          type="text"
           id="location"
           placeholder="Kyiv, Ukraine"
           {...register('location')}

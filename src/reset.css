@@ -14,10 +14,15 @@ ul {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 p {
   line-height: 1;
+  cursor: default;
+}
+span {
+  cursor: default;
 }
 
 button {
@@ -29,8 +34,13 @@ button {
   transition: all 250ms ease-in-out;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 main {
   padding-top: 76px;
+}
+
+label:has(input[type='checkbox'], input[type='radio']) {
+  cursor: pointer;
 }

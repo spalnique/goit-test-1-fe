@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactModal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -39,6 +38,7 @@ const Modal = () => {
               position: 'absolute',
               top: 40,
               right: 40,
+              cursor: 'pointer',
             }}
             onClick={handleClose}>
             <use xlinkHref={`${icons}#close`} />

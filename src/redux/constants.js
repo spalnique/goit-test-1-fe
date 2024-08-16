@@ -4,9 +4,9 @@ export const initialState = {
   adverts: {
     campers: [],
     nextCampers: [],
+    fetchNext: true,
     query: {},
-    isLoading: false,
-    error: null,
+    page: 1,
   },
   favorites: { ids: [], campers: [], nextCampers: [] },
   modal: { isOpen: false, camper: null },
