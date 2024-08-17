@@ -8,24 +8,28 @@ const instance = axios.create({
   params: { limit: perPage },
 });
 
-instance.interceptors.response.use(
-  (response) => response,
-  (error) =>
-    error.response && error.response.status === 404
-      ? Promise.resolve({ data: [] })
-      : Promise.reject(error)
-);
+// instance.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     if (error.response && error.response.status === 404) {
+//       let err = error;
+//       err.response.data = [];
+//       return Promise.reject(err);
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export const getAdverts = createAsyncThunk(
   'adverts/getAdverts',
   async ({ page, query }, thunkAPI) => {
     try {
-      const { data } = await instance.get('/adverts', {
+      const res = await instance.get('/adverts', {
         params: { page, ...query },
       });
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return res.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
@@ -34,12 +38,12 @@ export const getNextAdverts = createAsyncThunk(
   'adverts/getNextAdverts',
   async ({ page, query }, thunkAPI) => {
     try {
-      const { data } = await instance.get('/adverts', {
+      const res = await instance.get('/adverts', {
         params: { page: page + 1, ...query },
       });
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return res.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );

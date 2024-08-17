@@ -5,10 +5,11 @@ export const initialState = {
     campers: [],
     nextCampers: [],
     fetchNext: true,
+    fetch: true,
     query: {},
     page: 1,
   },
-  favorites: { ids: [], campers: [], nextCampers: [] },
+  favorites: { ids: [], campers: [], nextCampers: [], page: 1 },
   modal: { isOpen: false, camper: null },
 };
 
