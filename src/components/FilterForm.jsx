@@ -1,15 +1,24 @@
 import clsx from 'clsx';
 
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { resetQuery, setQuery } from '../redux/adverts/slice.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetQuery, selectQuery, setQuery } from '../redux/adverts/slice.js';
 
 import css from '../styles/FilterForm.module.css';
 import icons from '../assets/icons/icons.svg';
 
 const FilterForm = () => {
   const disabled = true; // Due to backend limitations some filters has been disabled. Set disabled to true in order to start using them.
-  const dispatch = useDispatch();
+
+  const {
+    location = '',
+    form = '',
+    transmission = false,
+    airConditioner = false,
+    kitchen = false,
+    TV = false,
+    shower = false,
+  } = useSelector(selectQuery);
 
   const { register, handleSubmit, watch, setFocus, reset } = useForm({
     defaultValues: {
@@ -21,7 +30,17 @@ const FilterForm = () => {
       TV: false,
       shower: false,
     },
+    values: {
+      location,
+      form,
+      transmission,
+      airConditioner,
+      kitchen,
+      TV,
+      shower,
+    },
   });
+  const dispatch = useDispatch();
 
   const onSubmit = ({ location, form, transmission, ...rest }) => {
     const query = {};
@@ -64,6 +83,7 @@ const FilterForm = () => {
           <use xlinkHref={`${icons}#location`} />
         </svg>
       </div>
+
       <span className={css.tipText}>Filters</span>
       <p className={css.filterTitle}>Vehicle equipment</p>
       <div className={css.checkboxWrapper}>
@@ -201,7 +221,6 @@ const FilterForm = () => {
           />
         </label>
       </div>
-
       <div className={css.buttonsWrapper}>
         <button className={css.formSubmitButton} type="submit">
           Send

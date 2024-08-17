@@ -11,6 +11,8 @@ const favoritesSlice = createSlice({
     selectFavoritesIds: (state) => state.ids,
     selectFavorites: (state) => state.campers,
     selectNextFavorites: (state) => state.nextCampers,
+    selectFavoritesPage: (state) => state.page,
+    selectLocationFilter: (state) => state.location,
   },
   reducers: {
     toggleFavorite: (state, { payload: camper }) => {
@@ -27,21 +29,34 @@ const favoritesSlice = createSlice({
     },
     renderMoreFavorites: (state) => {
       state.campers = [...state.campers, ...state.nextCampers];
+      state.nextCampers = [];
+      state.page += 1;
+    },
+    setPage: (state, { payload }) => {
+      state.page = payload;
+    },
+    setLocationFilter: (state, { payload }) => {
+      state.location = payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(getFavorites.fulfilled, (state, { payload }) => {
-        state.campers = [...payload];
+        state.campers = payload;
       })
       .addCase(getNextFavorites.fulfilled, (state, { payload }) => {
-        state.nextCampers = [...payload];
+        state.nextCampers = payload;
       });
   },
 });
 
 export const {
-  selectors: { selectFavoritesIds, selectFavorites, selectNextFavorites },
-  actions: { toggleFavorite, renderMoreFavorites },
+  selectors: {
+    selectFavoritesIds,
+    selectFavorites,
+    selectNextFavorites,
+    selectFavoritesPage,
+  },
+  actions: { toggleFavorite, renderMoreFavorites, setPage },
   reducer: favoritesReducer,
 } = favoritesSlice;

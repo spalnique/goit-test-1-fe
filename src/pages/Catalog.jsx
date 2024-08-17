@@ -7,6 +7,7 @@ import Section from '../shared/Section.jsx';
 import {
   renderMore,
   selectCampers,
+  selectFetch,
   selectFetchNext,
   selectNextCampers,
   selectPage,
@@ -16,6 +17,7 @@ import { getAdverts, getNextAdverts } from '../redux/adverts/operations.js';
 
 import css from '../styles/Catalog.module.css';
 import Sidebar from '../shared/Sidebar.jsx';
+import FilterForm from '../components/FilterForm.jsx';
 
 const Catalog = () => {
   const dispatch = useDispatch();
@@ -23,7 +25,8 @@ const Catalog = () => {
   const query = useSelector(selectQuery);
   const campers = useSelector(selectCampers);
   const nextCampers = useSelector(selectNextCampers);
-  const fetchNext = useSelector(selectFetchNext);
+  const shouldFetchNext = useSelector(selectFetchNext);
+  const shouldFetch = useSelector(selectFetch);
   const page = useSelector(selectPage);
 
   const handleLoadmore = () => {
@@ -31,21 +34,24 @@ const Catalog = () => {
   };
 
   useEffect(() => {
-    if (page === 1) {
-      dispatch(getAdverts({ page, query }));
-    }
-  }, [dispatch, page, query]);
+    if (!shouldFetch) return;
+
+    dispatch(getAdverts({ page, query }));
+  }, [dispatch, page, query, shouldFetch]);
 
   useEffect(() => {
-    if (fetchNext) {
-      dispatch(getNextAdverts({ page, query }));
-    }
-  }, [dispatch, fetchNext, page, query]);
+    if (!shouldFetchNext) return;
+
+    dispatch(getNextAdverts({ page, query }));
+  }, [dispatch, shouldFetchNext, page, query]);
 
   return (
     <Section>
       <div style={{ display: 'flex', gap: 65 }}>
-        <Sidebar />
+        <Sidebar>
+          <FilterForm />
+        </Sidebar>
+
         <div className={css.mainContent}>
           {campers.length > 0 && <CampersList campers={campers} />}
           {nextCampers.length > 0 && (

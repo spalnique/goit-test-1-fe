@@ -1,13 +1,7 @@
-import FilterForm from '../components/FilterForm.jsx';
-
 import css from '../styles/Sidebar.module.css';
 
-const Sidebar = () => {
-  return (
-    <aside className={css.sidebarWrapper}>
-      <FilterForm />
-    </aside>
-  );
+const Sidebar = ({ children }) => {
+  return <aside className={css.sidebarWrapper}>{children}</aside>;
 };
 
 export default Sidebar;

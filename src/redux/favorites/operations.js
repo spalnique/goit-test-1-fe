@@ -15,10 +15,10 @@ export const getFavorites = createAsyncThunk(
     try {
       const requests = ids.map((id) => instance.get(`/adverts/${id}`));
       const responses = await Promise.all(requests);
-      const data = responses.map(({ data }) => data);
+      const data = responses.map((response) => response.data);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
@@ -33,10 +33,10 @@ export const getNextFavorites = createAsyncThunk(
     try {
       const requests = ids.map((id) => instance.get(`/adverts/${id}`));
       const responses = await Promise.all(requests);
-      const data = responses.map(({ data }) => data);
+      const data = responses.map((response) => response.data);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
