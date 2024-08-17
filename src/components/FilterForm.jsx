@@ -20,26 +20,31 @@ const FilterForm = () => {
     shower = false,
   } = useSelector(selectQuery);
 
-  const { register, handleSubmit, watch, setFocus, reset } = useForm({
-    defaultValues: {
-      location: '',
-      form: '',
-      transmission: false,
-      airConditioner: false,
-      kitchen: false,
-      TV: false,
-      shower: false,
-    },
-    values: {
-      location,
-      form,
-      transmission,
-      airConditioner,
-      kitchen,
-      TV,
-      shower,
-    },
-  });
+  const defaultValues = {
+    location: '',
+    form: '',
+    transmission: false,
+    airConditioner: false,
+    kitchen: false,
+    TV: false,
+    shower: false,
+  };
+
+  const { register, handleSubmit, watch, setFocus, reset, getValues } = useForm(
+    {
+      defaultValues,
+      values: {
+        location,
+        form,
+        transmission,
+        airConditioner,
+        kitchen,
+        TV,
+        shower,
+      },
+    }
+  );
+
   const dispatch = useDispatch();
 
   const onSubmit = ({ location, form, transmission, ...rest }) => {
@@ -59,6 +64,11 @@ const FilterForm = () => {
   const handleReset = () => {
     dispatch(resetQuery());
     reset();
+  };
+
+  const isResetVisible = () => {
+    const values = getValues();
+    return JSON.stringify(values) !== JSON.stringify(defaultValues);
   };
 
   return (
@@ -228,6 +238,10 @@ const FilterForm = () => {
         <button
           className={css.formSubmitButton}
           type="button"
+          style={{
+            opacity: isResetVisible() ? 1 : 0,
+            transition: 'opacity 250ms ease-in-out 150ms',
+          }}
           onClick={handleReset}>
           Reset
         </button>
